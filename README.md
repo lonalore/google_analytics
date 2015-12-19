@@ -7,8 +7,6 @@ The plugin allows you to add the following statistics features to your site:
 - Selectively track/exclude certain users, user classes and pages
 - Monitor what type of links are tracked (downloads, outgoing and mailto)
 - Monitor what files are downloaded from your pages
-- Custom dimensions and metrics support
-- Custom code snippets
 - AdSense support
 - Demographics and Interests support (formerly known as DoubleClick remarketing support)
 - Anonymize visitors IP address

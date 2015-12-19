@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e107Plugin name="Google Analytics" lan="LAN_PLUGIN_GOOGLE_ANALYTICS_NAME" version="1.0" date="2015-12-19" compatibility="2.0" installRequired="true">
+    <author name="lonalore" url="http://lonalore.hu"/>
+    <summary lan="LAN_PLUGIN_GOOGLE_ANALYTICS_SUMM">Google Analytics</summary>
+    <description lan="LAN_PLUGIN_GOOGLE_ANALYTICS_DESC">Adds the Google Analytics web statistics tracking system to your website.</description>
+    <keywords>
+        <word>google</word>
+        <word>analytics</word>
+    </keywords>
+    <category>tools</category>
+    <copyright></copyright>
+    <adminLinks>
+        <link url="admin_config.php" description="" icon="images/icon_32.png" iconSmall="images/icon_16.png" primary="true">LAN_CONFIGURE</link>
+    </adminLinks>
+    <pluginPrefs>
+        <pref name='account'></pref>
+        <pref name='domain_mode'>0</pref>
+        <pref name='cross_domains'></pref>
+        <pref name='track_adsense'>0</pref>
+        <pref name='track_double_click'>0</pref>
+        <pref name='track_files'>0</pref>
+        <pref name='track_files_extensions'>0</pref>
+        <pref name='track_link_id'>0</pref>
+        <pref name='track_url_fragments'>0</pref>
+        <pref name='track_user_id'>0</pref>
+        <pref name='track_mailto'>0</pref>
+        <pref name='track_outbound'>0</pref>
+        <pref name='tracker_anonymize_ip'>0</pref>
+        <pref name='visibility_pages'>0</pref>
+        <pref name='visibility_roles'>0</pref>
+        <pref name='privacy_do_not_track'>0</pref>
+        <pref name='cache'>0</pref>
+        <pref name='last_cache'>0</pref>
+        <pref name='pages'>0</pref>
+        <pref name='classes'>0</pref>
+        <pref name='debug'>0</pref>
+    </pluginPrefs>
+</e107Plugin>
