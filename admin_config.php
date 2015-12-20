@@ -79,7 +79,7 @@ class google_analytics_main_ui extends e_admin_ui
 		$elements = '';
 
 
-		// Panel: Web Property ID.
+		// ---------- Panel: Web Property ID ----------
 		$scVars = array(
 			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_02,
 			'body'  => '',
@@ -101,7 +101,7 @@ class google_analytics_main_ui extends e_admin_ui
 		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
 
 
-		// Panel: Domains.
+		// ---------- Panel: Domains ----------
 		$scVars = array(
 			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_03,
 			'body'  => '',
@@ -140,7 +140,232 @@ class google_analytics_main_ui extends e_admin_ui
 		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
 
 
-		// Render form.
+		// ---------- Panel: Pages ----------
+		$scVars = array(
+			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_20,
+			'body'  => '',
+		);
+
+		// Field: Add tracking to specific pages
+		$sc->setVars(array(
+			'id'      => $form->name2id('visibility_pages'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_24,
+			'element' => $form->radio('visibility_pages', array(
+				0 => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_21,
+				1 => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_22,
+			), vartrue($prefs['visibility_pages'], 0)),
+			'help'    => '',
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		$sc->setVars(array(
+			'id'      => $form->name2id('pages'),
+			'label'   => '',
+			'element' => $form->textarea('pages', vartrue($prefs['pages'], ''), 3, 80, array(
+				'class' => 'form-control',
+			)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_23,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Render panel.
+		$sc->setVars($scVars);
+		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
+
+
+		// ---------- Panel: User Classes ----------
+		$scVars = array(
+			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_04,
+			'body'  => '',
+		);
+
+		// Field: Add tracking to specific pages
+		$sc->setVars(array(
+			'id'      => $form->name2id('visibility_roles'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_25,
+			'element' => $form->userclass('visibility_roles', vartrue($prefs['visibility_roles'], 0)),
+			'help'    => '',
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Render panel.
+		$sc->setVars($scVars);
+		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
+
+
+		// ---------- Panel: Users ----------
+		$scVars = array(
+			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_26,
+			'body'  => '',
+		);
+
+		// Field: Add tracking to specific pages
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_user_id'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_27,
+			'element' => $form->checkbox('track_user_id', 1, (bool) vartrue($prefs['track_user_id'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_28,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Render panel.
+		$sc->setVars($scVars);
+		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
+
+
+		// ---------- Panel: Links and Downloads ----------
+		$scVars = array(
+			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_05,
+			'body'  => '',
+		);
+
+		// Field: Track clicks on outbound links
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_outbound'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_29,
+			'element' => $form->checkbox('track_outbound', 1, (bool) vartrue($prefs['track_outbound'], false)),
+			'help'    => '',
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Track clicks on mailto links
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_mailto'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_30,
+			'element' => $form->checkbox('track_mailto', 1, (bool) vartrue($prefs['track_mailto'], false)),
+			'help'    => '',
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Track downloads (clicks on file links) for the following extensions
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_files'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_31,
+			'element' => $form->checkbox('track_files', 1, (bool) vartrue($prefs['track_files'], false)),
+			'help'    => '',
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Track downloads (clicks on file links) for the following extensions
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_files_extensions'),
+			'label'   => '',
+			'element' => $form->text('track_files_extensions', vartrue($prefs['track_files_extensions'], '')),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_32,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Track enhanced link attribution
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_link_id'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_33,
+			'element' => $form->checkbox('track_link_id', 1, (bool) vartrue($prefs['track_link_id'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_34,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Track changing URL fragments as pageviews
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_url_fragments'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_35,
+			'element' => $form->checkbox('track_url_fragments', 1, (bool) vartrue($prefs['track_url_fragments'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_36,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Render panel.
+		$sc->setVars($scVars);
+		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
+
+
+		// ---------- Panel: Advertising ----------
+		$scVars = array(
+			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_06,
+			'body'  => '',
+		);
+
+		// Field: Track AdSense ads
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_adsense'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_37,
+			'element' => $form->checkbox('track_adsense', 1, (bool) vartrue($prefs['track_adsense'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_38,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Track display features
+		$sc->setVars(array(
+			'id'      => $form->name2id('track_double_click'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_39,
+			'element' => $form->checkbox('track_double_click', 1, (bool) vartrue($prefs['track_double_click'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_40,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Render panel.
+		$sc->setVars($scVars);
+		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
+
+
+		// ---------- Panel: Privacy ----------
+		$scVars = array(
+			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_07,
+			'body'  => '',
+		);
+
+		// Field: Anonymize visitors IP address
+		$sc->setVars(array(
+			'id'      => $form->name2id('tracker_anonymize_ip'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_41,
+			'element' => $form->checkbox('tracker_anonymize_ip', 1, (bool) vartrue($prefs['tracker_anonymize_ip'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_42,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Universal web tracking opt-out
+		$sc->setVars(array(
+			'id'      => $form->name2id('privacy_do_not_track'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_43,
+			'element' => $form->checkbox('privacy_do_not_track', 1, (bool) vartrue($prefs['privacy_do_not_track'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_44,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Render panel.
+		$sc->setVars($scVars);
+		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
+
+
+		// ---------- Panel: Advanced settings ----------
+		$scVars = array(
+			'title' => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_45,
+			'body'  => '',
+		);
+
+		// Field: Locally cache tracking code file
+		$sc->setVars(array(
+			'id'      => $form->name2id('cache'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_46,
+			'element' => $form->checkbox('cache', 1, (bool) vartrue($prefs['cache'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_47,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Field: Enable debugging
+		$sc->setVars(array(
+			'id'      => $form->name2id('debug'),
+			'label'   => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_48,
+			'element' => $form->checkbox('debug', 1, (bool) vartrue($prefs['debug'], false)),
+			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_49,
+		));
+		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
+
+		// Render panel.
+		$sc->setVars($scVars);
+		$elements .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENTS'], true, $sc);
+
+
+		// ---------- Render form ----------
 		$scVars = array(
 			'elements' => $elements,
 			'actions'  => $form->submit('submit', LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_08),

@@ -37,5 +37,6 @@ $GOOGLE_ANALYTICS_TEMPLATE['ADMIN']['FORM_ELEMENT'] = '
 		{ELEMENT}
 		<p class="help-block">{HELP}</p>
 	</div>
+	<div class="clearfix"></div>
 </div>
 ';
