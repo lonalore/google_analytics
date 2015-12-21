@@ -213,7 +213,8 @@ function google_analytics_visibility_pages()
 				break;
 			}
 
-			if($cusPage && ($cusPage == defset('e_PAGE') || strpos($c_url, $cusPage) !== false))
+			$matchPath = google_analytics_match_path($c_url, $cusPage);
+			if(!empty($cusPage) && $matchPath)
 			{
 				$match = true;
 				break;
@@ -248,6 +249,36 @@ function google_analytics_visibility_pages()
 	}
 
 	return false;
+}
+
+/**
+ * Check if a path matches any pattern in a set of patterns.
+ *
+ * Example:
+ * <code>
+ * <?php
+ * google_analytics_match_path('my/path/here', 'my/path/*'); // returns true
+ * google_analytics_match_path('my/path/here', '*my*'); // returns true
+ * ?>
+ * </code>
+ *
+ * @param $path
+ *   The path to match.
+ * @param $patterns
+ *   String containing a set of patterns separated by \n, \r or \r\n.
+ *
+ * @return bool
+ *   Boolean value: TRUE if the path matches a pattern, FALSE otherwise.
+ */
+function google_analytics_match_path($path, $patterns)
+{
+	$path = str_replace(SITEURL, '', $path);
+	$patterns = trim($patterns);
+	$patterns = preg_quote($patterns, '/');
+	$patterns = str_replace('*', '.*', $patterns);
+	$patterns = str_replace('\.*', '.*', $patterns);
+	$regexps = '/^(' . $patterns . ')$/';
+	return (bool) preg_match($regexps, $path);
 }
 
 /**

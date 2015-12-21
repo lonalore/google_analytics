@@ -17,7 +17,7 @@
         <pref name='domain_mode'>0</pref>
         <pref name='cross_domains'></pref>
         <pref name='visibility_pages'>0</pref>
-        <pref name='pages'>e107_admin</pref>
+        <pref name='pages'>e107_admin/*</pref>
         <pref name='visibility_roles'>0</pref>
         <pref name='track_user_id'>0</pref>
         <pref name='track_outbound'>1</pref>
