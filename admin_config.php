@@ -64,6 +64,116 @@ class google_analytics_main_ui extends e_admin_ui
 
 
 	/**
+	 * Process submitted form data.
+	 */
+	function init()
+	{
+		if(isset($_POST['saveConfig']) && (int) $_POST['saveConfig'] === 1)
+		{
+			$prefs = e107::getPlugConfig('google_analytics');
+			$msg = e107::getMessage();
+
+			if(isset($_POST['account']))
+			{
+				$prefs->setPref('account', $_POST['account']);
+			}
+
+			if(isset($_POST['domain_mode']))
+			{
+				$prefs->setPref('domain_mode', (int) $_POST['domain_mode']);
+			}
+
+			if(isset($_POST['cross_domains']))
+			{
+				$prefs->setPref('cross_domains', $_POST['cross_domains']);
+			}
+
+			if(isset($_POST['visibility_pages']))
+			{
+				$prefs->setPref('visibility_pages', (int) $_POST['visibility_pages']);
+			}
+
+			if(isset($_POST['pages']))
+			{
+				$prefs->setPref('pages', $_POST['pages']);
+			}
+
+			if(isset($_POST['visibility_roles']))
+			{
+				$prefs->setPref('visibility_roles', (int) $_POST['visibility_roles']);
+			}
+
+			if(isset($_POST['track_user_id']))
+			{
+				$prefs->setPref('track_user_id', (int) $_POST['track_user_id']);
+			}
+
+			if(isset($_POST['track_outbound']))
+			{
+				$prefs->setPref('track_outbound', (int) $_POST['track_outbound']);
+			}
+
+			if(isset($_POST['track_mailto']))
+			{
+				$prefs->setPref('track_mailto', (int) $_POST['track_mailto']);
+			}
+
+			if(isset($_POST['track_files']))
+			{
+				$prefs->setPref('track_files', (int) $_POST['track_files']);
+			}
+
+			if(isset($_POST['track_files_extensions']))
+			{
+				$prefs->setPref('track_files_extensions', $_POST['track_files_extensions']);
+			}
+
+			if(isset($_POST['track_link_id']))
+			{
+				$prefs->setPref('track_link_id', (int) $_POST['track_link_id']);
+			}
+
+			if(isset($_POST['track_url_fragments']))
+			{
+				$prefs->setPref('track_url_fragments', (int) $_POST['track_url_fragments']);
+			}
+
+			if(isset($_POST['track_adsense']))
+			{
+				$prefs->setPref('track_adsense', (int) $_POST['track_adsense']);
+			}
+
+			if(isset($_POST['track_double_click']))
+			{
+				$prefs->setPref('track_double_click', (int) $_POST['track_double_click']);
+			}
+
+			if(isset($_POST['tracker_anonymize_ip']))
+			{
+				$prefs->setPref('tracker_anonymize_ip', (int) $_POST['tracker_anonymize_ip']);
+			}
+
+			if(isset($_POST['privacy_do_not_track']))
+			{
+				$prefs->setPref('privacy_do_not_track', (int) $_POST['privacy_do_not_track']);
+			}
+
+			if(isset($_POST['cache']))
+			{
+				$prefs->setPref('cache', (int) $_POST['cache']);
+			}
+
+			if(isset($_POST['debug']))
+			{
+				$prefs->setPref('debug', (int) $_POST['debug']);
+			}
+
+			$msg->addSuccess(LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_50);
+		}
+	}
+
+
+	/**
 	 * Build a custom configuration form to handle plugin preferences.
 	 */
 	function configPage()
@@ -250,7 +360,7 @@ class google_analytics_main_ui extends e_admin_ui
 		$sc->setVars(array(
 			'id'      => $form->name2id('track_files_extensions'),
 			'label'   => '',
-			'element' => $form->text('track_files_extensions', vartrue($prefs['track_files_extensions'], '')),
+			'element' => $form->text('track_files_extensions', vartrue($prefs['track_files_extensions'], ''), 512),
 			'help'    => LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_32,
 		));
 		$scVars['body'] .= $tp->parseTemplate($tpl['ADMIN']['FORM_ELEMENT'], true, $sc);
@@ -371,7 +481,11 @@ class google_analytics_main_ui extends e_admin_ui
 			'actions'  => $form->submit('submit', LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_08),
 		);
 		$sc->setVars($scVars);
-		$html = $tp->parseTemplate($tpl['ADMIN']['FORM'], true, $sc);
+
+		$html = $form->open('', 'post', e_SELF);
+		$html .= $form->hidden('saveConfig', 1);
+		$html .= $tp->parseTemplate($tpl['ADMIN']['FORM'], true, $sc);
+		$html .= $form->close();
 
 		return $html;
 	}

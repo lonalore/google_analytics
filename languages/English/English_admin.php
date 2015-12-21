@@ -65,3 +65,5 @@ define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_46', 'Locally cache tracking code file
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_47', 'If checked, the tracking code file is retrieved from Google Analytics and cached locally. It is updated daily from Google\'s servers to ensure updates to tracking code are reflected in the local copy. Do not activate this until after Google Analytics has confirmed that site tracking is working!');
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_48', 'Enable debugging');
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_49', 'If checked, the Google Universal Analytics debugging script will be loaded. You should not enable your production site to use this version of the JavaScript. The analytics_debug.js script is larger than the analytics.js tracking code and it is not typically cached. Using it in your production site will slow down your site for all of your users. Again, this is only for your own testing purposes. Debug messages are printed to the window.console object.');
+
+define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_50', 'Settings have been saved successfully!');
