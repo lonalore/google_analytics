@@ -93,8 +93,8 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 	$domain_mode = vartrue($prefs['domain_mode'], 0);
 	$googleanalytics_adsense_script = '';
 
-	// Per RFC 2109, cookie domains must contain at least one dot other than the
-	// first. For hosts such as 'localhost' or IP Addresses we don't set a cookie domain.
+	// Per RFC 2109, cookie domains must contain at least one dot other than the first. For hosts such as 'localhost'
+	// or IP Addresses we don't set a cookie domain.
 	if($domain_mode == 1 && count(explode('.', $cookie_domain)) > 2 && !is_numeric(str_replace('.', '', $cookie_domain)))
 	{
 		$create_only_fields = array_merge($create_only_fields, array('cookieDomain' => $cookie_domain));
@@ -110,9 +110,8 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 	// Track logged in users across all devices.
 	if(vartrue($prefs['track_user_id'], 0) && USERID)
 	{
-		// The USERID value should be a unique, persistent, and non-personally
-		// identifiable string identifier that represents a user or signed-in
-		// account across devices.
+		// The USERID value should be a unique, persistent, and non-personally identifiable string identifier that
+		// represents a user or signed-in account across devices.
 		$userID = google_analytics_hmac_base64(USERID, google_analytics_get_private_key()); // TODO: Salt private key.
 		$create_only_fields['userId'] = $userID;
 	}
@@ -180,8 +179,8 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 }
 
 /**
- * Based on visibility setting this function returns TRUE if GA code should
- * be added to the current user class and otherwise FALSE.
+ * Based on visibility setting this function returns TRUE if GA code should be added to the current user class and
+ * otherwise FALSE.
  */
 function google_analytics_visibility_roles()
 {
@@ -190,8 +189,8 @@ function google_analytics_visibility_roles()
 }
 
 /**
- * Based on visibility setting this function returns TRUE if GA code should
- * be added to the current page and otherwise FALSE.
+ * Based on visibility setting this function returns TRUE if GA code should be added to the current page and otherwise
+ * FALSE.
  */
 function google_analytics_visibility_pages()
 {
@@ -258,7 +257,7 @@ function google_analytics_visibility_pages()
  * <code>
  * <?php
  * google_analytics_match_path('my/path/here', 'my/path/*'); // returns true
- * google_analytics_match_path('my/path/here', '*my*'); // returns true
+ * google_analytics_match_path('my/path/here', '*path*'); // returns true
  * ?>
  * </code>
  *
