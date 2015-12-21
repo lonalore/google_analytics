@@ -2,8 +2,6 @@ Google Analytics (e107 v2 plugin)
 =================================
 Adds the Google Analytics web statistics tracking system to your website.
 
-> This plugin is under development!!!
-
 Requirements:
 - e107 CMS v2
 
