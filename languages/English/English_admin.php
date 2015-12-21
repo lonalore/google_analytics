@@ -32,7 +32,7 @@ define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_19', 'If you selected "Multiple top-le
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_20', 'Pages');
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_21', 'Every page except the listed pages');
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_22', 'The listed pages only');
-define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_23', 'Enter one page per line. The "*" character is a wildcard. [front] is the front page.');
+define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_23', 'Enter one page per line. FRONTPAGE is the front page.');
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_24', 'Add tracking to specific pages');
 
 define('LAN_PLUGIN_GOOGLE_ANALYTICS_ADMIN_25', 'Add tracking for specific class');

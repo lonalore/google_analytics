@@ -17,11 +17,11 @@ The plugin allows you to add the following statistics features to your site:
 - Anonymize visitors IP address
 - DoNotTrack support (non-cached content only)
 - Modal dialog tracking (Colorbox)
-- Cache the Google Analytics code on your local server for improved page loading times
 - Enhanced Link Attribution support
 - User ID tracking across devices
 - Changing URL fragments can be tracked as pageviews
 - Debug mode
+- *Cache the Google Analytics code on your local server for improved page loading times* **(FUTURE)**
 
 Screenshots
 ===========
