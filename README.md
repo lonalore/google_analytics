@@ -27,5 +27,5 @@ Screenshots
 ===========
 
 ### Admin UI
-![Screenshot 1](https://www.dropbox.com/s/wmcwgw1mkananpe/admin_ui.png?dl=1)
+![Screenshot 1](https://www.dropbox.com/s/wmcwgw1mkananpe/admin_ui.png?dl=1&v=2)
 
