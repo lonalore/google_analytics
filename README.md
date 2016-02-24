@@ -1,5 +1,7 @@
 Google Analytics (e107 v2 plugin)
 =================================
+
+[![Join the chat at https://gitter.im/lonalore/google_analytics](https://badges.gitter.im/lonalore/google_analytics.svg)](https://gitter.im/lonalore/google_analytics?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Adds the Google Analytics web statistics tracking system to your website.
 
 Requirements:
