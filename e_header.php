@@ -7,7 +7,7 @@
 
 $tp = e107::getParser();
 $prefs = e107::getPlugConfig('google_analytics')->getPref();
-$id = vartrue($prefs['account'], '');
+$id = varset($prefs['account'], '');
 
 $visibilityPages = google_analytics_visibility_pages();
 $visibilityRoles = google_analytics_visibility_roles();
@@ -18,39 +18,39 @@ $visibilityRoles = google_analytics_visibility_roles();
 if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 {
 
-	$debug = vartrue($prefs['debug'], 0);
+	$debug = (int) varset($prefs['debug'], 0);
 	$url_custom = '';
 
 	// Add link tracking.
 	$link_settings = array();
 
-	if($track_outbound = vartrue($prefs['track_outbound'], 1))
+	if($track_outbound = (int) varset($prefs['track_outbound'], 1))
 	{
 		$link_settings['trackOutbound'] = $track_outbound;
 	}
 
-	if($track_mailto = vartrue($prefs['track_mailto'], 1))
+	if($track_mailto = (int) varset($prefs['track_mailto'], 1))
 	{
 		$link_settings['trackMailto'] = $track_mailto;
 	}
 
-	if(($track_download = vartrue($prefs['track_files'], 1)) && ($trackfiles_extensions = vartrue($prefs['track_files_extensions'], '')))
+	if(($track_download = (int) varset($prefs['track_files'], 1)) && ($trackfiles_extensions = varset($prefs['track_files_extensions'], '')))
 	{
 		$link_settings['trackDownload'] = $track_download;
 		$link_settings['trackDownloadExtensions'] = $trackfiles_extensions;
 	}
 
-	if($track_domain_mode = vartrue($prefs['domain_mode'], 0))
+	if($track_domain_mode = (int) varset($prefs['domain_mode'], 0))
 	{
 		$link_settings['trackDomainMode'] = $track_domain_mode;
 	}
 
-	if($track_cross_domains = vartrue($prefs['cross_domains'], ''))
+	if($track_cross_domains = varset($prefs['cross_domains'], ''))
 	{
 		$link_settings['trackCrossDomains'] = preg_split('/(\r\n?|\n)/', $track_cross_domains);
 	}
 
-	if($track_url_fragments = vartrue($prefs['track_url_fragments'], 0))
+	if($track_url_fragments = (int) varset($prefs['track_url_fragments'], 0))
 	{
 		$link_settings['trackUrlFragments'] = $track_url_fragments;
 		$url_custom = 'location.pathname + location.search + location.hash';
@@ -90,7 +90,7 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 
 	// Domain tracking type.
 	$cookie_domain = $_SERVER['HTTP_HOST'];
-	$domain_mode = vartrue($prefs['domain_mode'], 0);
+	$domain_mode = (int) varset($prefs['domain_mode'], 0);
 	$googleanalytics_adsense_script = '';
 
 	// Per RFC 2109, cookie domains must contain at least one dot other than the first. For hosts such as 'localhost'
@@ -108,7 +108,7 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 	}
 
 	// Track logged in users across all devices.
-	if(vartrue($prefs['track_user_id'], 0) && USERID)
+	if((int) varset($prefs['track_user_id'], 0) && USERID)
 	{
 		// The USERID value should be a unique, persistent, and non-personally identifiable string identifier that
 		// represents a user or signed-in account across devices.
@@ -124,14 +124,14 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 
 	// Add enhanced link attribution after 'create', but before 'pageview' send.
 	// @see https://support.google.com/analytics/answer/2558867
-	if(vartrue($prefs['track_link_id'], 0))
+	if((int) varset($prefs['track_link_id'], 0))
 	{
 		$script .= 'ga("require", "linkid", "linkid.js");';
 	}
 
 	// Add display features after 'create', but before 'pageview' send.
 	// @see https://support.google.com/analytics/answer/2444872
-	if(vartrue($prefs['track_double_click'], 0))
+	if((int) varset($prefs['track_double_click'], 0))
 	{
 		$script .= 'ga("require", "displayfeatures");';
 	}
@@ -145,7 +145,7 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 		$script .= 'ga("linker:autoLink", ' . $tp->toJSON($link_settings['trackCrossDomains']) . ');';
 	}
 
-	if(vartrue($prefs['tracker_anonymize_ip'], 1))
+	if((int) varset($prefs['tracker_anonymize_ip'], 1))
 	{
 		$script .= 'ga("set", "anonymizeIp", true);';
 	}
@@ -167,7 +167,7 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 		$script .= $message_events;
 	}
 
-	if(vartrue($prefs['track_adsense'], 0))
+	if((int) varset($prefs['track_adsense'], 0))
 	{
 		// Custom tracking. Prepend before all other JavaScript.
 		// @TODO: https://support.google.com/adsense/answer/98142
@@ -185,7 +185,8 @@ if(preg_match('/^UA-\d+-\d+$/', $id) && $visibilityPages && $visibilityRoles)
 function google_analytics_visibility_roles()
 {
 	$prefs = e107::getPlugConfig('google_analytics')->getPref();
-	return check_class($prefs['visibility_roles']);
+	$class = (int) varset($prefs['visibility_roles'], 0);
+	return check_class($class);
 }
 
 /**
@@ -195,7 +196,7 @@ function google_analytics_visibility_roles()
 function google_analytics_visibility_pages()
 {
 	$prefs = e107::getPlugConfig('google_analytics')->getPref();
-	$cusPagePref = explode(PHP_EOL, vartrue($prefs['pages'], ''));
+	$cusPagePref = explode(PHP_EOL, varset($prefs['pages'], ''));
 
 	$match = false;
 
@@ -222,7 +223,7 @@ function google_analytics_visibility_pages()
 	}
 
 	// The listed pages only.
-	if((int) $prefs['visibility_pages'] === 1)
+	if((int) varset($prefs['visibility_pages'], 0) === 1)
 	{
 		if($match === true)
 		{
@@ -235,7 +236,7 @@ function google_analytics_visibility_pages()
 	}
 
 	// Every page except the listed pages.
-	if((int) $prefs['visibility_pages'] === 0)
+	if((int) varset($prefs['visibility_pages'], 0) === 0)
 	{
 		if($match === true)
 		{
@@ -311,8 +312,9 @@ function google_analytics_hmac_base64($data, $key)
 function google_analytics_get_private_key()
 {
 	$prefs = e107::getPlugConfig('google_analytics')->getPref();
+	$key = varset($prefs['private_key'], '');
 
-	if(!($key = vartrue($prefs['private_key'], 0)))
+	if(empty($key))
 	{
 		$key = google_analytics_random_key();
 		e107::getPlugConfig('google_analytics')->set('private_key', $key)->save();

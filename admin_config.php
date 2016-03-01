@@ -71,17 +71,17 @@ class google_analytics_main_ui extends e_admin_ui
 		if(isset($_POST['saveConfig']) && (int) $_POST['saveConfig'] === 1)
 		{
 			$prefs = e107::getPlugConfig('google_analytics');
-			$prefs->set('account', vartrue($_POST['account'], ''))->save();
+			$prefs->set('account', varset($_POST['account'], ''))->save();
 			$prefs->set('domain_mode', (int) vartrue($_POST['domain_mode'], 0))->save();
-			$prefs->set('cross_domains', vartrue($_POST['cross_domains'], ''))->save();
+			$prefs->set('cross_domains', varset($_POST['cross_domains'], ''))->save();
 			$prefs->set('visibility_pages', (int) vartrue($_POST['visibility_pages'], 0))->save();
-			$prefs->set('pages', vartrue($_POST['pages'], ''))->save();
-			$prefs->set('visibility_roles', vartrue($_POST['visibility_roles'], 0))->save();
+			$prefs->set('pages', varset($_POST['pages'], ''))->save();
+			$prefs->set('visibility_roles', (int) vartrue($_POST['visibility_roles'], 0))->save();
 			$prefs->set('track_user_id', (int) vartrue($_POST['track_user_id'], 0))->save();
 			$prefs->set('track_outbound', (int) vartrue($_POST['track_outbound'], 0))->save();
 			$prefs->set('track_mailto', (int) vartrue($_POST['track_mailto'], 0))->save();
 			$prefs->set('track_files', (int) vartrue($_POST['track_files'], 0))->save();
-			$prefs->set('track_files_extensions', vartrue($_POST['track_files_extensions']))->save();
+			$prefs->set('track_files_extensions', varset($_POST['track_files_extensions']))->save();
 			$prefs->set('track_link_id', (int) vartrue($_POST['track_link_id'], 0))->save();
 			$prefs->set('track_url_fragments', (int) vartrue($_POST['track_url_fragments'], 0))->save();
 			$prefs->set('track_adsense', (int) vartrue($_POST['track_adsense'], 0))->save();
