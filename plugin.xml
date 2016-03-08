@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e107Plugin name="Google Analytics" lan="LAN_PLUGIN_GOOGLE_ANALYTICS_NAME" version="1.1" date="2016-03-01" compatibility="2.0" installRequired="true">
+<e107Plugin name="Google Analytics" lan="LAN_PLUGIN_GOOGLE_ANALYTICS_NAME" version="1.0-beta2" date="2016-03-08" compatibility="2.0" installRequired="true">
     <author name="lonalore" url="https://github.com/lonalore/google_analytics"/>
     <summary lan="LAN_PLUGIN_GOOGLE_ANALYTICS_SUMM">Google Analytics</summary>
     <description lan="LAN_PLUGIN_GOOGLE_ANALYTICS_DESC">Adds the Google Analytics web statistics tracking system to your website.</description>
